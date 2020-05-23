@@ -2,8 +2,8 @@ import numpy
 
 numbers = [4,6,7,3,6,9]
 
-outputDivision = []
-outputNoDivision = []
+output_division = []
+output_no_division = []
 
 
 # Outputs an array with the product of all elements of 
@@ -14,14 +14,17 @@ def productExceptSelf(nums):
 
     for i in range(0, length):
         product = sum / numbers[i]
-        outputDivision.append(product.astype(int))
+        output_division.append(product.astype(int))
 
-    return outputDivision
+    return output_division
 
 # Outputs an array with the product of all elements of 
 # the input array except for the current element, without division
 def productExceptSelfNoDivision(nums):
     length = len(nums)
+    if length == 0:
+        return 'Empty Array'
+    
     L, R, answer = [0] * length, [0] * length, [0] * length
 
     L[0] = 1
@@ -32,10 +35,12 @@ def productExceptSelfNoDivision(nums):
     for i in reversed(range(length - 1)):
         R[i] = nums[i + 1] * R[i + 1]
 
-    for i in range(0,length):
-        outputNoDivision.append(L[i] * R[i])
 
-    return outputNoDivision
+    for i in range(0,length):
+        # outputNoDivision.append(L[i] * R[i])
+        answer[i] = L[i] * R[i]
+
+    return answer
 
 
 
